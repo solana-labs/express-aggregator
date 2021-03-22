@@ -9,13 +9,13 @@ function timeout(ms: number) {
 }
 
 export class ConfirmedBlockSubscription {
-  protected static subject = new Rx.ReplaySubject<ConfirmedBlock>(1);
+  private static subject = new Rx.ReplaySubject<ConfirmedBlock>(1);
 
-  protected static connection = new Connection(
+  private static connection = new Connection(
     process.env.API_ENDPOINT || "http://localhost:8899"
   );
 
-  protected static id: number | undefined;
+  private static id: number | undefined;
 
   static getObservable() {
     return this.subject.asObservable();
